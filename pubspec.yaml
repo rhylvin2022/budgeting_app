@@ -1,5 +1,5 @@
-name: base_code
-description: "A base code project for initial development for any and all projects"
+name: budgeting_app
+description: "A budgeting app for WG Media"
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 

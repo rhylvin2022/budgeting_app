@@ -1,4 +1,4 @@
-import 'package:base_code/global/enums.dart';
+import 'package:budgeting_app/global/enums.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'authentication_event.dart';

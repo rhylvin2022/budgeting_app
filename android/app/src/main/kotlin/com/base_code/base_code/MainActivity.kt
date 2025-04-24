@@ -1,4 +1,4 @@
-package com.base_code.base_code
+package com.budgeting_app.budgeting_app
 
 import io.flutter.embedding.android.FlutterActivity
 

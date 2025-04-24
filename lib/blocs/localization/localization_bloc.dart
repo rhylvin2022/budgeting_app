@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:base_code/global/enums.dart';
-import 'package:base_code/storage/preferences.dart';
+import 'package:budgeting_app/global/enums.dart';
+import 'package:budgeting_app/storage/preferences.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'localization_event.dart';
@@ -36,7 +36,8 @@ class LocalizationBloc extends Bloc<LocalizationEvent, LocalizationState> {
   }
 
   Stream<LocalizationState> _mapLocalizationSelectedToState(
-      Language selectedLanguage) async* {
+    Language selectedLanguage,
+  ) async* {
     final sharedPrefService = await SharedPreferencesService.instance;
     final defaultLocalizationCode = sharedPrefService!.languageCode;
 
@@ -54,9 +55,10 @@ class LocalizationBloc extends Bloc<LocalizationEvent, LocalizationState> {
 
   /// This method is added to reduce code repetition.
   Stream<LocalizationState> _loadLocalization(
-      SharedPreferencesService sharedPreferencesService,
-      String localizationCode,
-      String countryCode) async* {
+    SharedPreferencesService sharedPreferencesService,
+    String localizationCode,
+    String countryCode,
+  ) async* {
     final locale = Locale(localizationCode, countryCode);
     await sharedPreferencesService.setLanguage(locale.languageCode);
     yield LocalizationState(locale);

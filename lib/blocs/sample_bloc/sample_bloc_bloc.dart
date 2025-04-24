@@ -1,6 +1,6 @@
 // ignore_for_file: import_of_legacy_library_into_null_safe
 
-import 'package:base_code/repositories/sample_repository.dart';
+import 'package:budgeting_app/repositories/sample_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -14,7 +14,7 @@ class SampleBlocBloc extends Bloc<SampleBlocEvent, SampleBlocState> {
   final SampleRepository sampleRepository;
 
   SampleBlocBloc({required this.sampleRepository})
-      : super(SampleBlocStateInitial());
+    : super(SampleBlocStateInitial());
 
   @override
   Stream<SampleBlocState> mapEventToState(SampleBlocEvent event) async* {

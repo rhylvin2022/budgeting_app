@@ -8,12 +8,12 @@ import 'package:async/async.dart';
 // import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
-import 'package:base_code/global/app_strings.dart';
+import 'package:budgeting_app/global/app_strings.dart';
 import 'package:http/http.dart';
 import 'package:http_interceptor/http_interceptor.dart';
 
 import 'package:flutter/foundation.dart';
-// import 'package:base_code/storage/storage.helper.dart';
+// import 'package:budgeting_app/storage/storage.helper.dart';
 
 part 'api_client.dart';
 

@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.base_code.base_code">
+    package="com.budgeting_app.budgeting_app">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -10,7 +10,7 @@
         android:name="android.permission.REQUEST_INSTALL_PACKAGES"
         tools:node="remove" />
     <application
-        android:label="base_code"
+        android:label="budgeting_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:base_code/global/app_strings.dart';
+import 'package:budgeting_app/global/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:swagger/api.dart';
 
@@ -17,11 +17,11 @@ class SampleRepository {
 
     try {
       final response = await getSampleRepository.getSampleRepository(
-          // request,
-          // AppStrings.CLIENT_ID,
-          // AppStrings.CLIENT_SECRET,
-          // token,
-          );
+        // request,
+        // AppStrings.CLIENT_ID,
+        // AppStrings.CLIENT_SECRET,
+        // token,
+      );
       return response;
     } on TimeoutException catch (_) {
       throw (AppStrings.timedOutResponse);

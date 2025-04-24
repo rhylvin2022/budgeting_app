@@ -1,6 +1,6 @@
-# base_code
+# budgeting_app
 
-A base_code project for initial development of any projects
+A budgeting_app project for WG Media
 state management - bloc implemented
 
 

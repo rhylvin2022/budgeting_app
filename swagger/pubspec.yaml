@@ -2,7 +2,7 @@ name: swagger
 version: 1.0.0
 description: Swagger API client
 dependencies:
-  base_code:
+  budgeting_app:
     path: ../
   http:
   flutter_localizations:

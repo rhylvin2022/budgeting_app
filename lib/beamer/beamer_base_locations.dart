@@ -1,20 +1,20 @@
-import 'package:base_code/beamer/navigation_routes.dart';
-import 'package:base_code/pages/home/home_page.dart';
-import 'package:base_code/pages/login/login_page.dart';
-import 'package:base_code/pages/splash/splash_page.dart';
+import 'package:budgeting_app/beamer/navigation_routes.dart';
+import 'package:budgeting_app/pages/home/home_page.dart';
+import 'package:budgeting_app/pages/login/login_page.dart';
+import 'package:budgeting_app/pages/splash/splash_page.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/widgets.dart';
 
 class BeamerBaseLocations extends BeamLocation<BeamState> {
   BeamerBaseLocations(RouteInformation routeInformation)
-      : super(routeInformation);
+    : super(routeInformation);
 
   @override
   List<String> get pathPatterns => [
-        NavigationRoutes.splash,
-        NavigationRoutes.login,
-        NavigationRoutes.home,
-      ];
+    NavigationRoutes.splash,
+    NavigationRoutes.login,
+    NavigationRoutes.home,
+  ];
 
   @override
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
@@ -32,11 +32,7 @@ class BeamerBaseLocations extends BeamLocation<BeamState> {
           child: LoginPage(),
         ),
       if (state.uriBlueprint.path == pathPatterns[2])
-        const BeamPage(
-          key: ValueKey('home'),
-          title: 'Home',
-          child: HomePage(),
-        ),
+        const BeamPage(key: ValueKey('home'), title: 'Home', child: HomePage()),
     ];
   }
 }
