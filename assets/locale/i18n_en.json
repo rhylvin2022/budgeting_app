@@ -1,5 +1,8 @@
 {
   "login": "Login",
   "trigger_api": "Trigger API",
-  "logout": "Logout"
+  "logout": "Logout",
+  "incorrect_input": "Incorrect Input",
+  "incorrect_email_address": "Incorrect Email Address",
+  "text_is_empty" : "Text is Empty"
 }
