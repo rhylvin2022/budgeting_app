@@ -2,6 +2,8 @@ class AppStrings {
   static const timedOutResponse =
       '{"errorCode":"CONNECTION_TIMED_OUT","values":{"param1":"Connection Timeout \\nPlease try again later"},"violations":null}';
 
+  static const budgetItemLogs = 'budgetItemLogs';
+
   static const List<String> entryType = ['Expense', 'Income'];
 
   static const List<String> currencies = ['PHP', 'USD'];

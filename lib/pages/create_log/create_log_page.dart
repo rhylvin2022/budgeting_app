@@ -1,3 +1,4 @@
+import 'package:budgeting_app/blocs/budget/budget_bloc.dart';
 import 'package:budgeting_app/global/app_strings.dart';
 import 'package:budgeting_app/blocs/authentication/authentication_bloc.dart';
 import 'package:budgeting_app/blocs/localization/app_localization.dart';
@@ -12,11 +13,13 @@ import 'package:budgeting_app/widgets/input_field.dart';
 import 'package:budgeting_app/widgets/mobile_app_bar.dart';
 import 'package:budgeting_app/widgets/mobile_scaffold.dart';
 import 'package:budgeting_app/widgets/primary_button.dart';
+import 'package:budgeting_app/widgets/secondary_button.dart';
 import 'package:budgeting_app/widgets/single_choice_row_buttons.dart';
 import 'package:budgeting_app/widgets/vertical_space.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:swagger/api.dart';
 
 class CreateLogPage extends BaseView {
   const CreateLogPage({super.key});
@@ -26,6 +29,7 @@ class CreateLogPage extends BaseView {
 }
 
 class CreateLogPageState extends BaseViewState {
+  final logKey = GlobalKey<FormState>();
   final dateController = TextEditingController();
   final dateFocusNode = FocusNode();
   String dateErrorText = '';
@@ -58,6 +62,16 @@ class CreateLogPageState extends BaseViewState {
               if (state is GetSampleBlocSuccess) {
                 hideLoadingDialog(context);
                 setState(() {});
+              }
+            },
+          ),
+          BlocListener<BudgetBloc, BudgetState>(
+            listener: (context, state) {
+              if (state is CreateBudgetLogSuccess) {
+                hideLoadingDialog(context);
+                setState(() {});
+              } else if (state is CreateBudgetLogFail) {
+                hideLoadingDialog(context);
               }
             },
           ),
@@ -137,48 +151,77 @@ class CreateLogPageState extends BaseViewState {
                               });
                             },
                           ),
-                    InputField(
-                      inputTitle:
-                          AppLocalizations.of(context)!.translate("title") ??
-                              "Title",
-                      controller: titleController,
-                      onSubmitComplete: (val) {},
-                      onChanged: (val) {},
-                      onEditingComplete: () {},
-                    ),
-                    SingleChoiceRowButtons(
-                        title: AppLocalizations.of(context)!
-                                .translate("currency") ??
-                            "Currency",
-                        currentChosenButtonIndex: currencyType,
-                        buttonNames: AppStrings.currencies,
-                        chooseButton: (value) {
-                          setState(() {
-                            currencyType = value;
-                          });
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            if (!mounted) {
-                              return;
-                            }
-                          });
-                        }),
-                    InputField(
-                      inputTitle: 'Amount',
-                      controller: amountController,
-                      onSubmitComplete: (val) {},
-                      onChanged: (val) {},
-                      onEditingComplete: () {},
-                      align: TextAlign.right,
-                      validationType: ValidationType.amount,
-                      inputType: KeyBoardType.number,
-                      textColor: expense ? AppColors.red : AppColors.black,
+                    Form(
+                      key: logKey,
+                      child: Column(
+                        children: [
+                          InputField(
+                            inputTitle: AppLocalizations.of(context)!
+                                    .translate("title") ??
+                                "Title",
+                            controller: titleController,
+                            onSubmitComplete: (val) {
+                              setState(() {});
+                            },
+                            onChanged: (val) {
+                              setState(() {});
+                            },
+                            onEditingComplete: () {
+                              setState(() {});
+                            },
+                          ),
+                          SingleChoiceRowButtons(
+                              title: AppLocalizations.of(context)!
+                                      .translate("currency") ??
+                                  "Currency",
+                              currentChosenButtonIndex: currencyType,
+                              buttonNames: AppStrings.currencies,
+                              chooseButton: (value) {
+                                setState(() {
+                                  currencyType = value;
+                                });
+                                WidgetsBinding.instance
+                                    .addPostFrameCallback((_) {
+                                  if (!mounted) {
+                                    return;
+                                  }
+                                });
+                              }),
+                          InputField(
+                            inputTitle: 'Amount',
+                            controller: amountController,
+                            onSubmitComplete: (val) {
+                              setState(() {});
+                            },
+                            onChanged: (val) {
+                              setState(() {});
+                            },
+                            onEditingComplete: () {
+                              setState(() {});
+                            },
+                            align: TextAlign.right,
+                            validationType: ValidationType.amount,
+                            inputType: KeyBoardType.number,
+                            textColor:
+                                expense ? AppColors.red : AppColors.black,
+                          ),
+                        ],
+                      ),
                     ),
                     InputField(
                       inputTitle: 'Remarks',
                       controller: remarksController,
-                      onSubmitComplete: (val) {},
-                      onChanged: (val) {},
-                      onEditingComplete: () {},
+                      dontValidate: true,
+                      optional: true,
+                      onSubmitComplete: (val) {
+                        setState(() {});
+                      },
+                      onChanged: (val) {
+                        setState(() {});
+                      },
+                      onEditingComplete: () {
+                        setState(() {});
+                      },
                     ),
                     VerticalSpace(),
                   ],
@@ -192,47 +235,37 @@ class CreateLogPageState extends BaseViewState {
                     AppLocalizations.of(context)!.translate("create_log") ??
                         "Create Log",
                 buttonWidthRatio: 0.9,
-                // enabled: checkWhichToVerify(),
+                enabled: enablePrimaryButton(),
                 onPressed: () async {
-                  //   if (validateAmountMax(
-                  //       double.parse(amountController.text.replaceAll(',', '')),
-                  //       double.parse(
-                  //           displayWalletCardWithAccountBalances[walletCurrentIndex]
-                  //               .accountBalance!
-                  //               .availableBalance!))) {
-                  //     setState(() {
-                  //       redirectLoading = true;
-                  //     });
-                  //     await setUpTransaction(false);
-                  //     if (bankType == 0 || networkUsed == "INSTAPAY") {
-                  //       context.beamToNamed(
-                  //         NavigationRoutes.SEND_MONEY_VERIFY_TRANSACTION_DETAILS,
-                  //         data: sendMoneyArgs,
-                  //       );
-                  //     } else if (networkUsed == "PESONET") {
-                  //       openConfirmationAlertBox(
-                  //           title: "Reminder!",
-                  //           bodyFont: kIsWeb ? null : 14,
-                  //           body: AppLocalizations.of(context)!
-                  //               .translate("pesonet_warning") ??
-                  //               '',
-                  //           onConfirm: () {
-                  //             context.beamToNamed(
-                  //               NavigationRoutes
-                  //                   .SEND_MONEY_VERIFY_TRANSACTION_DETAILS,
-                  //               data: sendMoneyArgs,
-                  //             );
-                  //           });
-                  //     } else {}
-                  //   } else {
-                  //     openErrorAlertBox(
-                  //       substituteText: AppLocalizations.of(context)!
-                  //           .translate("not_enough_balance") ??
-                  //           '',
-                  //     );
-                  //   }
+                  showLoadingDialog(context);
+                  final logItem = LogItem();
+                  logItem.expense = expense;
+                  logItem.category = expense ? expenseCategory : incomeCategory;
+                  logItem.title = titleController.text;
+                  logItem.date = dateController.text;
+                  logItem.currency = currencyType == 0 ? 'PHP' : 'USD';
+                  logItem.amount =
+                      (double.parse(amountController.text.replaceAll(',', '')) *
+                              100)
+                          .toInt();
+                  logItem.remarks = remarksController.text ?? '';
+                  context.read<BudgetBloc>().add(CreateBudgetLog(logItem));
                 },
               ),
+              VerticalSpace(),
+              SecondaryButton(
+                  buttonText: 'Reset',
+                  onPressed: () {
+                    setState(() {
+                      initDate();
+                      expenseCategory = AppStrings.expenseCategories.first;
+                      incomeCategory = AppStrings.incomeCategories.first;
+                      titleController.text = '';
+                      amountController.text = '';
+                      currencyType = 0;
+                      remarksController.text = '';
+                    });
+                  }),
               VerticalSpace(
                 spaceMultiplier: 0.1,
               ),
@@ -240,4 +273,9 @@ class CreateLogPageState extends BaseViewState {
           ),
         ),
       );
+
+  bool enablePrimaryButton() => expense
+      ? expenseCategory != AppStrings.expenseCategories.first
+      : incomeCategory != AppStrings.incomeCategories.first &&
+          (logKey.currentState?.validate() ?? false);
 }

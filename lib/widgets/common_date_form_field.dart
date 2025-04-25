@@ -143,7 +143,7 @@ class _CommonDateFormFieldState extends State<CommonDateFormField> {
                         fontSize: 16,
                         fontFamily: 'Satoshi-Regular',
                       ),
-                      cursorColor: AppColors.enabledPrimaryButtonColorTheme,
+                      cursorColor: AppColors.primaryColor,
                       onTap: () {},
                       onEditingComplete: () {
                         widget.focusNode?.unfocus();

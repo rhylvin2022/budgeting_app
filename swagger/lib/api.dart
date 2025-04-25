@@ -39,4 +39,6 @@ part 'interceptors/logging_interceptor.dart';
 part 'api/get_sample_repository_api.dart';
 part 'model/sample_repository_response.dart';
 
+part 'model/log_item.dart';
+
 ApiDefaultClient defaultApiClient = ApiDefaultClient();

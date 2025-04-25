@@ -96,12 +96,12 @@ class _SingleChoiceRowButtonsState extends State<SingleChoiceRowButtons> {
                   ? MaterialStateProperty.resolveWith<Color?>(
                       (Set<MaterialState> states) {
                         if (states.contains(MaterialState.pressed)) {
-                          return AppColors.enabledPrimaryButtonColorTheme;
+                          return AppColors.primaryColor;
                         }
                         if (states.contains(MaterialState.disabled)) {
                           return AppColors.disabledPrimaryButtonColorTheme;
                         }
-                        return AppColors.enabledPrimaryButtonColorTheme;
+                        return AppColors.primaryColor;
                       },
                     )
                   : MaterialStateProperty.resolveWith<Color?>(

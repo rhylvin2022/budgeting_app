@@ -7,6 +7,5 @@ class AppColors {
   static const Color grey = Color(0xFF9D9898);
   static const Color primaryColor = Color(0xFF007E7A);
 
-  static const enabledPrimaryButtonColorTheme = primaryColor;
   static const disabledPrimaryButtonColorTheme = Color(0xFFEBEBEB);
 }
