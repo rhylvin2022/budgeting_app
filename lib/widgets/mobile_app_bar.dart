@@ -44,107 +44,104 @@ class _MobileAppBarState extends State<MobileAppBar> {
   }
 
   @override
-  Widget build(BuildContext context) => Container(
-        color: AppColors.white,
-        child: SafeArea(
-          child: Scaffold(
-            appBar: PreferredSize(
-              preferredSize:
-                  Size.fromHeight(MediaQuery.of(context).size.height * 0.125),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.1,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(20.0),
-                    bottomRight: Radius.circular(20.0),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.primaryColor.withOpacity(0.5),
-                      blurRadius: 5,
-                      offset: const Offset(0, 6),
-                      spreadRadius: -2,
-                    ),
-                  ],
-                  color: AppColors.white,
+  Widget build(BuildContext context) => SafeArea(
+        child: Scaffold(
+          appBar: PreferredSize(
+            preferredSize:
+                Size.fromHeight(MediaQuery.of(context).size.height * 0.125),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.1,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(20.0),
+                  bottomRight: Radius.circular(20.0),
                 ),
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: MediaQuery.of(context).size.height * 0.02,
-                      left: MediaQuery.of(context).size.height * 0.02,
-                      child: widget.hideBackButton
-                          ? Container()
-                          : InkWell(
-                              onTap: () {
-                                ButtonConflictPrevention.activate(() {
-                                  if (widget.parentPath != '') {
-                                    Beamer.of(context, root: true)
-                                        .beamToNamed(widget.parentPath);
-                                  } else {
-                                    context.beamBack();
-                                  }
-                                  if (widget.additionalRouteFunction != null) {
-                                    widget.additionalRouteFunction!();
-                                  }
-                                });
-                              },
-                              child: const Icon(
-                                Icons.arrow_back,
-                                color: AppColors.black,
-                              ),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primaryColor.withOpacity(0.5),
+                    blurRadius: 5,
+                    offset: const Offset(0, 6),
+                    spreadRadius: -2,
+                  ),
+                ],
+                color: AppColors.colorTheme,
+              ),
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: MediaQuery.of(context).size.height * 0.02,
+                    left: MediaQuery.of(context).size.height * 0.02,
+                    child: widget.hideBackButton
+                        ? Container()
+                        : InkWell(
+                            onTap: () {
+                              ButtonConflictPrevention.activate(() {
+                                if (widget.parentPath != '') {
+                                  Beamer.of(context, root: true)
+                                      .beamToNamed(widget.parentPath);
+                                } else {
+                                  context.beamBack();
+                                }
+                                if (widget.additionalRouteFunction != null) {
+                                  widget.additionalRouteFunction!();
+                                }
+                              });
+                            },
+                            child: const Icon(
+                              Icons.arrow_back,
+                              color: AppColors.black,
                             ),
-                    ),
-                    Positioned(
-                      top: MediaQuery.of(context).size.height * 0.055,
-                      left: MediaQuery.of(context).size.height * 0.06,
-                      child: Text(
-                        widget.title,
-                        style: TextStyle(
-                          color: AppColors.black,
-                          fontFamily: 'Satoshi',
-                          fontSize: widget.titleFontSize,
-                          fontWeight: FontWeight.bold,
-                        ),
+                          ),
+                  ),
+                  Positioned(
+                    top: MediaQuery.of(context).size.height * 0.055,
+                    left: MediaQuery.of(context).size.height * 0.06,
+                    child: Text(
+                      widget.title,
+                      style: TextStyle(
+                        color: AppColors.colorThemeText,
+                        fontFamily: 'Satoshi',
+                        fontSize: widget.titleFontSize,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    widget.trailing != ''
-                        ? Positioned(
-                            top: MediaQuery.of(context).size.height * 0.02,
-                            right: MediaQuery.of(context).size.width * 0.05,
-                            child: Text(
-                              widget.trailing,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'Satoshi-Bold',
-                                color: AppColors.primaryColor,
-                              ),
+                  ),
+                  widget.trailing != ''
+                      ? Positioned(
+                          top: MediaQuery.of(context).size.height * 0.02,
+                          right: MediaQuery.of(context).size.width * 0.05,
+                          child: Text(
+                            widget.trailing,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontFamily: 'Satoshi-Bold',
+                              color: AppColors.primaryColor,
                             ),
-                          )
-                        : Container(),
-                  ],
-                ),
+                          ),
+                        )
+                      : Container(),
+                ],
               ),
             ),
-            body: Padding(
-              padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.025),
-              child: widget.refreshFunction == null
-                  ? SingleChildScrollView(
+          ),
+          body: Padding(
+            padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height * 0.025),
+            child: widget.refreshFunction == null
+                ? SingleChildScrollView(
+                    controller: _controller,
+                    child: Center(child: widget.child),
+                  )
+                : RefreshIndicator(
+                    onRefresh: _refreshData,
+                    child: SingleChildScrollView(
                       controller: _controller,
-                      child: Center(child: widget.child),
-                    )
-                  : RefreshIndicator(
-                      onRefresh: _refreshData,
-                      child: SingleChildScrollView(
-                        controller: _controller,
-                        child: Center(
-                          child: widget.child,
-                        ),
+                      child: Center(
+                        child: widget.child,
                       ),
                     ),
-            ),
+                  ),
           ),
         ),
       );

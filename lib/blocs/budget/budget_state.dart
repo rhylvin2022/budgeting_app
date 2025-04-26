@@ -24,3 +24,29 @@ class CreateBudgetLogFail extends BudgetState {
   @override
   List<Object?> get props => [errorObject];
 }
+
+class LoadBudgetLogSuccessNoData extends BudgetState {
+  final DateTime triggeredAt;
+
+  LoadBudgetLogSuccessNoData() : triggeredAt = DateTime.now();
+
+  @override
+  List<Object?> get props => [triggeredAt];
+}
+
+class LoadBudgetLogSuccess extends BudgetState {
+  final List<LogItem> logItems;
+
+  LoadBudgetLogSuccess(this.logItems);
+
+  @override
+  List<Object?> get props => [logItems];
+}
+
+class LoadBudgetLogFail extends BudgetState {
+  LoadBudgetLogFail(this.errorObject);
+  final Object errorObject;
+
+  @override
+  List<Object?> get props => [errorObject];
+}

@@ -78,10 +78,10 @@ class CommonDropDownButtonState extends State<CommonDropDownButton> {
               scrollDirection: Axis.horizontal,
               child: Text(
                 widget.dropdownTitle,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 16,
                   fontFamily: 'Satoshi-Medium',
-                  color: Colors.black,
+                  color: AppColors.colorThemeText,
                 ),
               ),
             ),
@@ -89,7 +89,7 @@ class CommonDropDownButtonState extends State<CommonDropDownButton> {
               height: 10,
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.075,
+              height: MediaQuery.of(context).size.height * 0.06,
               child: IgnorePointer(
                 ignoring: widget.disableDropdown,
                 child: ElevatedButton(
@@ -103,7 +103,7 @@ class CommonDropDownButtonState extends State<CommonDropDownButton> {
                     padding: const EdgeInsets.all(15),
                     backgroundColor: widget.disableDropdown
                         ? AppColors.disabledPrimaryButtonColorTheme
-                        : AppColors.white,
+                        : AppColors.colorThemeDropdown,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(13.0),
                       side: BorderSide(
@@ -120,17 +120,17 @@ class CommonDropDownButtonState extends State<CommonDropDownButton> {
                                 widget.loadIfValueIs == widget.currentValue
                             ? '...'
                             : truncateName(widget.currentValue ?? ''),
-                        style: const TextStyle(
-                          color: Colors.black,
+                        style: TextStyle(
+                          color: AppColors.colorThemeText,
                           fontSize: 16,
                           fontFamily: 'Satoshi-Regular',
                         ),
                       ),
                       widget.disableDropdown
                           ? Container()
-                          : const Icon(
+                          : Icon(
                               Icons.keyboard_arrow_down,
-                              color: Colors.black,
+                              color: AppColors.colorThemeText,
                             ),
                     ],
                   ),
@@ -351,7 +351,7 @@ class StatefulDropdownState extends State<StatefulDropdown> {
       Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: Colors.white,
+          color: AppColors.colorTheme,
         ),
         width: MediaQuery.of(context).size.width * 0.9,
         height: dialogHeight,
@@ -362,8 +362,8 @@ class StatefulDropdownState extends State<StatefulDropdown> {
             return ListTile(
               title: Text(
                 value,
-                style: const TextStyle(
-                  color: Colors.black,
+                style: TextStyle(
+                  color: AppColors.colorThemeText,
                   fontSize: 16,
                   fontFamily: 'Satoshi-Regular',
                 ),
@@ -383,7 +383,7 @@ class StatefulDropdownState extends State<StatefulDropdown> {
 
   Widget searchBar() => Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.colorTheme,
           border: Border.all(
             color: Colors.black.withOpacity(0.4),
           ),

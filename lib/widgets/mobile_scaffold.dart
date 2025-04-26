@@ -7,7 +7,7 @@ class MobileScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.colorTheme,
         body: SafeArea(
           child: SingleChildScrollView(
             child: SizedBox(

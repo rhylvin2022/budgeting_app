@@ -2,6 +2,7 @@ import 'package:budgeting_app/blocs/authentication/authentication_bloc.dart';
 import 'package:budgeting_app/blocs/budget/budget_bloc.dart';
 import 'package:budgeting_app/blocs/localization/localization_bloc.dart';
 import 'package:budgeting_app/blocs/sample_bloc/sample_bloc_bloc.dart';
+import 'package:budgeting_app/blocs/settings/settings_bloc.dart';
 import 'package:budgeting_app/repositories/sample_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,6 +30,10 @@ class BaseBlocProvider extends StatelessWidget {
           ///budget
           BlocProvider<BudgetBloc>(
               create: (BuildContext context) => BudgetBloc()),
+
+          ///settings
+          BlocProvider<SettingsBloc>(
+              create: (BuildContext context) => SettingsBloc()),
         ],
         child: child,
       );

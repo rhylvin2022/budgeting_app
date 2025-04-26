@@ -107,10 +107,10 @@ class _CommonDateFormFieldState extends State<CommonDateFormField> {
               children: [
                 Text(
                   widget.dateFormTitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
                     fontFamily: 'Satoshi-Medium',
-                    color: Colors.black,
+                    color: AppColors.colorThemeText,
                   ),
                 ),
               ],
@@ -138,8 +138,8 @@ class _CommonDateFormFieldState extends State<CommonDateFormField> {
                       focusNode: widget.focusNode,
                       controller: widget.controller,
                       autocorrect: false,
-                      style: const TextStyle(
-                        color: Colors.black,
+                      style: TextStyle(
+                        color: AppColors.colorThemeText,
                         fontSize: 16,
                         fontFamily: 'Satoshi-Regular',
                       ),
@@ -151,9 +151,9 @@ class _CommonDateFormFieldState extends State<CommonDateFormField> {
                       },
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
-                        suffixIcon: const Icon(
+                        suffixIcon: Icon(
                           Icons.date_range,
-                          color: Colors.black,
+                          color: AppColors.colorThemeText,
                         ),
                         disabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(

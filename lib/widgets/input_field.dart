@@ -65,7 +65,7 @@ class InputField extends StatefulWidget {
     this.dontValidate = false,
     this.maxAmount,
     this.minAmount = 1,
-    this.optional,
+    this.optional = false,
     this.removeValidatorEntirely = false,
     this.textColor = AppColors.black,
   }) : super(key: key);
@@ -97,10 +97,10 @@ class _InputFieldState extends State<InputField> {
               children: [
                 Text(
                   widget.inputTitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
                     fontFamily: 'Satoshi-Medium',
-                    color: Colors.black,
+                    color: AppColors.colorThemeText,
                   ),
                 ),
               ],
@@ -142,8 +142,8 @@ class _InputFieldState extends State<InputField> {
                 prefixText: widget.prefixText,
                 suffixIcon: widget.suffix,
                 prefixIcon: widget.prefix,
-                prefixStyle: const TextStyle(
-                  color: Colors.grey,
+                prefixStyle: TextStyle(
+                  color: AppColors.colorThemeText,
                   fontSize: 16,
                 ),
                 focusedBorder: OutlineInputBorder(

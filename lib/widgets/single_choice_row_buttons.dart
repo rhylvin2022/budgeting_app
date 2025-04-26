@@ -17,7 +17,7 @@ class SingleChoiceRowButtons extends StatefulWidget {
     required this.currentChosenButtonIndex,
     required this.buttonNames,
     required this.chooseButton,
-    this.buttonHeightRatio = .07,
+    this.buttonHeightRatio = .05,
   });
 
   @override
@@ -45,10 +45,10 @@ class _SingleChoiceRowButtonsState extends State<SingleChoiceRowButtons> {
               children: [
                 Text(
                   widget.title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
                     fontFamily: 'Satoshi-Medium',
-                    color: AppColors.black,
+                    color: AppColors.colorThemeText,
                   ),
                 ),
               ],

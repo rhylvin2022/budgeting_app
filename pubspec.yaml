@@ -25,6 +25,9 @@ dependencies:
     path: ./swagger
   mask_text_input_formatter: ^2.3.0
   currency_text_input_formatter: ^2.2.2
+  pie_chart: ^5.4.0
+  fl_chart: ^0.71.0
+  carousel_slider: 5.0.0
 
 dev_dependencies:
   flutter_test:

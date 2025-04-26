@@ -34,7 +34,7 @@ class HomePageState extends BaseViewState {
           ),
         ],
         child: Scaffold(
-          backgroundColor: AppColors.white,
+          backgroundColor: AppColors.colorTheme,
           body: Stack(
             fit: StackFit.expand,
             alignment: Alignment.center,
@@ -68,9 +68,9 @@ class HomePageState extends BaseViewState {
                         : Text(
                             setup,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 19,
-                              color: AppColors.primaryColor,
+                              color: AppColors.colorThemeText,
                               fontFamily: "Satoshi-Bold",
                             ),
                           ),
@@ -80,9 +80,9 @@ class HomePageState extends BaseViewState {
                         : Text(
                             punchLine,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 19,
-                              color: AppColors.primaryColor,
+                              color: AppColors.colorThemeText,
                               fontFamily: "Satoshi-Bold",
                             ),
                           ),

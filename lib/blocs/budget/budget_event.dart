@@ -7,3 +7,5 @@ class CreateBudgetLog extends BudgetEvent {
   final LogItem logItem;
   CreateBudgetLog(this.logItem);
 }
+
+class LoadBudgetLog extends BudgetEvent {}

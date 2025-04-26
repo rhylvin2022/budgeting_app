@@ -55,4 +55,10 @@ class AppStrings {
     'Inheritance',
     'Alimony'
   ];
+
+  static const List<String> settingsThemes = ['light', 'dark'];
+
+  static const String settingsTheme = 'settingsTheme';
+
+  static const String settingsConversionRate = 'settingsConversionRate';
 }
