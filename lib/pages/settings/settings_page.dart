@@ -106,8 +106,17 @@ class SettingsPageState extends BaseViewState {
             MobileScaffold(
               child: Column(
                 children: [
-                  VerticalSpace(
-                    spaceMultiplier: 0.05,
+                  ///back button
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: PositionedCircularButton(
+                      usePositioned: false,
+                      positionPoint: PositionPoint.topLeft,
+                      onTap: () {
+                        GlobalFunctions.beamBack(context);
+                      },
+                      icon: Icon(Icons.arrow_back),
+                    ),
                   ),
                   CardContent(
                     child: Column(
@@ -185,18 +194,6 @@ class SettingsPageState extends BaseViewState {
                   ),
                 ],
               ),
-            ),
-
-            ///back button
-            PositionedCircularButton(
-              bottom: null,
-              left: 20,
-              right: null,
-              top: 70,
-              onTap: () {
-                GlobalFunctions.beamBack(context);
-              },
-              icon: Icon(Icons.arrow_back),
             ),
           ],
         ),

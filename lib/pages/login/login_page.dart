@@ -1,6 +1,7 @@
 import 'package:budgeting_app/beamer/navigation_routes.dart';
 import 'package:budgeting_app/blocs/budget/budget_bloc.dart';
 import 'package:budgeting_app/global/app_colors.dart';
+import 'package:budgeting_app/global/enums.dart';
 import 'package:budgeting_app/global/global_functions.dart';
 import 'package:budgeting_app/widgets/base_view.dart';
 import 'package:budgeting_app/widgets/card_content.dart';
@@ -107,100 +108,101 @@ class LoginPageState extends BaseViewState {
         child: Stack(
           children: [
             MobileScaffold(
-              child: displayLogs
-                  ? SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          VerticalSpace(
-                            spaceMultiplier: 0.05,
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.5,
-                            child: CardContent(
-                              horizontalPadding: 20,
-                              verticalPadding: 20,
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  children: [
-                                    VerticalSpace(
-                                      spaceMultiplier: 0.02,
-                                    ),
-
-                                    ///content
-                                    Column(
+              child: Column(
+                children: [
+                  ///settings button
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: PositionedCircularButton(
+                      usePositioned: false,
+                      positionPoint: PositionPoint.topRight,
+                      onTap: () {
+                        GlobalFunctions.beamToNamed(
+                            context, NavigationRoutes.settings);
+                      },
+                      icon: Icon(Icons.settings),
+                    ),
+                  ),
+                  displayLogs
+                      ? SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.5,
+                                child: CardContent(
+                                  horizontalPadding: 20,
+                                  verticalPadding: 20,
+                                  child: SingleChildScrollView(
+                                    child: Column(
                                       children: [
-                                        ///future
-                                        futureContent(),
+                                        VerticalSpace(
+                                          spaceMultiplier: 0.02,
+                                        ),
 
-                                        ///today
-                                        todayContent(),
+                                        ///content
+                                        Column(
+                                          children: [
+                                            ///future
+                                            futureContent(),
 
-                                        ///yesterday
-                                        yesterdayContent(),
+                                            ///today
+                                            todayContent(),
 
-                                        ///previous transactions
-                                        previousContent(),
+                                            ///yesterday
+                                            yesterdayContent(),
 
-                                        ///space
-                                        SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.1,
+                                            ///previous transactions
+                                            previousContent(),
+
+                                            ///space
+                                            SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.1,
+                                            ),
+                                          ],
+                                        ),
+                                        VerticalSpace(
+                                          spaceMultiplier: 0.02,
                                         ),
                                       ],
                                     ),
-                                    VerticalSpace(
-                                      spaceMultiplier: 0.02,
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
-                            ),
+                              VerticalSpace(),
+                              SummaryRow(
+                                balance: totalBalance,
+                                expense: totalExpense,
+                                income: totalIncome,
+                              ),
+                              VerticalSpace(),
+                              LogItemPieChart(
+                                logItems: logItems,
+                              ),
+                              VerticalSpace(
+                                spaceMultiplier: 0.07,
+                              ),
+                            ],
                           ),
-                          VerticalSpace(),
-                          SummaryRow(
-                            balance: totalBalance,
-                            expense: totalExpense,
-                            income: totalIncome,
-                          ),
-                          LogItemPieChart(
-                            logItems: logItems,
-                          ),
-                          VerticalSpace(
-                            spaceMultiplier: 0.07,
-                          ),
-                        ],
-                      ),
-                    )
-                  : Column(
-                      children: [],
-                    ),
+                        )
+                      : Column(
+                          children: [],
+                        ),
+                ],
+              ),
             ),
 
             ///add button
             PositionedCircularButton(
-              bottom: 40,
-              left: 0,
-              right: 0,
-              top: null,
+              positionPoint: PositionPoint.bottomCenter,
               onTap: () {
                 GlobalFunctions.beamToNamed(
                     context, NavigationRoutes.createLog);
               },
               icon: Icon(Icons.add),
-            ),
-
-            ///settings button
-            PositionedCircularButton(
-              bottom: null,
-              left: null,
-              right: 20,
-              top: 70,
-              onTap: () {
-                GlobalFunctions.beamToNamed(context, NavigationRoutes.settings);
-              },
-              icon: Icon(Icons.settings),
             ),
           ],
         ),
